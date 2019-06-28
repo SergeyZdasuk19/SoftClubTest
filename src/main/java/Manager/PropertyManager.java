@@ -11,8 +11,11 @@ public class PropertyManager {
             "\\src\\test\\resources\\datafile.properties";
     private static String propertyLocatorFilePath = System.getProperty("user.dir") +
             "\\src\\test\\resources\\locator.properties";
+    private static String propertyMessageFilePath = System.getProperty("user.dir") +
+            "\\src\\test\\resources\\message.properties";
     private static Properties userProperties;
     private static Properties locatorProperties;
+    private static Properties messageProperties;
 
     public static Properties getUserProperties() {
         if (null == userProperties) {
@@ -28,6 +31,13 @@ public class PropertyManager {
         return locatorProperties;
     }
 
+    public static Properties getMessageProperties() {
+        if (null == messageProperties) {
+            messageProperties = new Properties();
+        }
+        return messageProperties;
+    }
+
     public void loadLocatorData() {
         try {
             locatorProperties.load(new FileInputStream(propertyLocatorFilePath));
@@ -39,6 +49,14 @@ public class PropertyManager {
     public void loadUserData() {
         try {
             userProperties.load(new FileInputStream(propertyUserFilePath));
+        } catch (IOException e) {
+            System.out.println("Configuration properties file cannot be found");
+        }
+    }
+
+    public void loadMessageData() {
+        try {
+            messageProperties.load(new FileInputStream(propertyMessageFilePath));
         } catch (IOException e) {
             System.out.println("Configuration properties file cannot be found");
         }
