@@ -59,8 +59,6 @@ public class MainPage extends AbstractPage {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Message")));
         driver.findElement(propertyManager.getLocator("Message")).click();
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Content")));
-
     }
 
     public String getTitleMainPage(){
@@ -71,7 +69,7 @@ public class MainPage extends AbstractPage {
 
     public boolean isMessageContainsUserEmail(String username){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Content")));
-        return true;
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("MessageEmail")));
+        return  driver.findElement(propertyManager.getLocator("MessageEmail")).getText().contains(username);
     }
 }

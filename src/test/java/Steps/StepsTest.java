@@ -54,6 +54,7 @@ public class StepsTest {
     @Test
     public void oneCanWriteMessage() {
         steps.inputPassword(user.getPassword());
-        steps.writeMessage(user.getUserName(),message.getSubjectMessage(),message.getTextMessage());
+        steps.writeMessage(user.getUserName(), message.getSubjectMessage(), message.getTextMessage());
+        Assert.assertTrue(steps.isMessageContainsUserEmail("Сергей"));
     }
 }
