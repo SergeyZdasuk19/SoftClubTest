@@ -31,10 +31,11 @@ public class LoginPage extends AbstractPage {
 
     public void inputLogin(String username) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Username_field")));
         driver.findElement(propertyManager.getLocator("Username_field")).clear();
         driver.findElement(propertyManager.getLocator("Username_field")).sendKeys(username);
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("UsernameButtonNext")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(propertyManager.getLocator("UsernameButtonNext")).click();
     }
 
@@ -44,7 +45,7 @@ public class LoginPage extends AbstractPage {
         driver.findElement(propertyManager.getLocator("Password_field")).clear();
         driver.findElement(propertyManager.getLocator("Password_field")).sendKeys(password);
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("PasswordButtonNext")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(propertyManager.getLocator("PasswordButtonNext")).click();
     }
 

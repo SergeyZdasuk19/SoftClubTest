@@ -40,18 +40,17 @@ public class MainPage extends AbstractPage {
     public void writeMessage(String whom,String subject,String text){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("WriteMessage")));
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("WriteMessage")).click();
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("ToWhom")));
-        driver.findElement(propertyManager.getLocator("ToWhom")).click();
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("ToWhom")).sendKeys(whom);
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Subject")));
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("Subject")).sendKeys(subject);
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Text")));
-        driver.findElement(propertyManager.getLocator("Text")).click();
-        driver.findElement(propertyManager.getLocator("Text")).sendKeys(text    );
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
+        driver.findElement(propertyManager.getLocator("Text")).sendKeys(text);
 
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("ButtonSend")));
         driver.findElement(propertyManager.getLocator("ButtonSend")).click();
