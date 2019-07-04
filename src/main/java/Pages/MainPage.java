@@ -29,8 +29,9 @@ public class MainPage extends AbstractPage {
     }
 
     public void logOut(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("ImgAccount")));
+        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("ImgAccount")).click();
 
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("ButtonExit")));
@@ -38,7 +39,7 @@ public class MainPage extends AbstractPage {
     }
 
     public void writeMessage(String whom,String subject,String text){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("WriteMessage")));
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("WriteMessage")).click();
@@ -52,22 +53,22 @@ public class MainPage extends AbstractPage {
         driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS) ;
         driver.findElement(propertyManager.getLocator("Text")).sendKeys(text);
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("ButtonSend")));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(propertyManager.getLocator("ButtonSend")));
         driver.findElement(propertyManager.getLocator("ButtonSend")).click();
 
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Message")));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(propertyManager.getLocator("Message")));
         driver.findElement(propertyManager.getLocator("Message")).click();
 
     }
 
     public String getTitleMainPage(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("Img")));
         return driver.getTitle();
     }
 
     public boolean isMessageContainsUserEmail(String username){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 80);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(propertyManager.getLocator("MessageEmail")));
         return  driver.findElement(propertyManager.getLocator("MessageEmail")).getText().contains(username);
     }

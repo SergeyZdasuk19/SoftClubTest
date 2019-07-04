@@ -26,7 +26,6 @@ public class Steps {
 
     public void logOutGmail() {
         MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
         mainPage.logOut();
     }
 
