@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public class Message {
     private String textMessage;
@@ -8,8 +8,8 @@ public class Message {
         return textMessage;
     }
 
-    public void setTextMessage(String textMessge) {
-        this.textMessage = textMessge;
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
 
     public String getSubjectMessage() {

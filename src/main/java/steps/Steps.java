@@ -1,9 +1,9 @@
-package Steps;
+package steps;
 
-import Driver.DriverSingleton;
-import Manager.PropertyManager;
-import Pages.LoginPage;
-import Pages.MainPage;
+import driver.DriverSingleton;
+import manager.PropertyManager;
+import pages.LoginPage;
+import pages.MainPage;
 import org.openqa.selenium.WebDriver;
 
 public class Steps {
