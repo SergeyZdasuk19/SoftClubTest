@@ -8,7 +8,7 @@ public class StepsTest {
     private Steps steps;
     private BusinessObject businessObject;
 
-    @BeforeClass(description = "Init browser")
+    @BeforeMethod(description = "Init browser")
     public void setUp() {
         steps = new Steps();
         businessObject = new BusinessObject();
@@ -16,7 +16,7 @@ public class StepsTest {
         steps.openBrowser();
     }
 
-    @AfterClass(description = "Stop Browser")
+    @AfterMethod(description = "Stop Browser")
     public void stopBrowser() {
         steps.closeBrowser();
     }
@@ -29,13 +29,14 @@ public class StepsTest {
 
     @Test
     public void oneCanLogOut() {
+        steps.logInGmail(businessObject.getUser().getUserName(), businessObject.getUser().getPassword());
         steps.logOutGmail();
         Assert.assertFalse(steps.getTitleLogInPage().contains(businessObject.getUser().getUserName()));
     }
 
     @Test
     public void oneCanWriteMessage() {
-        steps.inputPassword(businessObject.getUser().getPassword());
+        steps.logInGmail(businessObject.getUser().getUserName(), businessObject.getUser().getPassword());
         steps.writeMessage(businessObject.getUser().getUserName(), businessObject.getMessage().getSubjectMessage(), businessObject.getMessage().getTextMessage());
         Assert.assertTrue(steps.isMessageContainsUserEmail("Сергей"));
     }

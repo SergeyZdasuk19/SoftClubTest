@@ -28,10 +28,6 @@ public class PropertyManager {
         return userProperties;
     }
 
-    public static Properties getLocatorProperties() {
-        return locatorProperties;
-    }
-
     public static Properties getMessageProperties() {
         return messageProperties;
     }
