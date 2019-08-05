@@ -1,8 +1,13 @@
-package entity;
+package gmail.entity;
 
 public class Message {
     private String textMessage;
     private String subjectMessage;
+
+    public Message(String subjectMessage, String textMessage) {
+        this.textMessage = textMessage;
+        this.subjectMessage = subjectMessage;
+    }
 
     public String getTextMessage() {
         return textMessage;

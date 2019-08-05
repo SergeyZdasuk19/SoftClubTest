@@ -1,4 +1,4 @@
-package driver;
+package gmail.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +10,6 @@ public class DriverSingleton {
     private static WebDriver driver;
     private static final String WEB_DRIVER = "webdriver.chrome.driver";
     private static final String WEB_DRIVER_PATH = System.getProperty("user.dir") + "\\src\\test\\resources\\chromedriver.exe";
-
     private DriverSingleton() {}
 
     public static WebDriver getDriver() {
