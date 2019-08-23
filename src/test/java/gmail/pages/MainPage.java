@@ -4,58 +4,57 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class MainPage extends AbstractPage {
-    private String imgAccount;
-    private String buttongSingOut;
-    private String img;
-    private String writeMessage;
-    private String fieldToWhom;
-    private String fieldSubject;
-    private String fieldText;
-    private String buttonSendMessage;
-    private String emailInMassage;
-    private String listOfMessages;
+
+    private By imgAccount;
+    private By buttongSingOut;
+    private By img;
+    private By writeMessage;
+    private By fieldToWhom;
+    private By fieldSubject;
+    private By fieldText;
+    private By buttonSendMessage;
+    private By emailInMassage;
+    private By listOfMessages;
 
     @Override
     public void openPage() {
         driver.get(BASE_URL);
     }
 
-    public MainPage(WebDriver driver, String imgAccount, String buttongSingOut, String img, String writeMessage,
-                    String fieldToWhom, String fieldSubject, String fieldText, String buttonSendMessage,
-                    String emailInMassage, String listOfMessages) {
+    public MainPage(WebDriver driver) {
         super(driver);
-        this.imgAccount = imgAccount;
-        this.buttongSingOut = buttongSingOut;
-        this.img = img;
-        this.writeMessage = writeMessage;
-        this.fieldToWhom = fieldToWhom;
-        this.fieldSubject = fieldSubject;
-        this.fieldText = fieldText;
-        this.buttonSendMessage = buttonSendMessage;
-        this.emailInMassage = emailInMassage;
-        this.listOfMessages = listOfMessages;
     }
 
     public void logOut() {
-        runPerformedElement(By.cssSelector(imgAccount));
-        runPerformedElement(By.cssSelector(buttongSingOut));
+        imgAccount = By.cssSelector("a[aria-label*='Google:']");
+        buttongSingOut = By.cssSelector("a[href*='Logout']");
+        runPerformedElement(imgAccount);
+        runPerformedElement(buttongSingOut);
     }
 
     public void writeMessage(String whom, String subject, String text) {
-        runPerformedElement(By.cssSelector(writeMessage));
-        getElementTotallyLocated(By.cssSelector(fieldToWhom)).sendKeys(whom);
-        getElementTotallyLocated(By.cssSelector(fieldSubject)).sendKeys(subject);
-        getElementTotallyLocated(By.cssSelector(fieldText)).sendKeys(text);
-        runPerformedElement(By.cssSelector(buttonSendMessage));
+        writeMessage = By.cssSelector("div[style*='user'][role='button']");
+        fieldToWhom = By.cssSelector("textarea[name='to']");
+        fieldSubject = By.cssSelector("input[name='subjectbox']");
+        fieldText = By.cssSelector("div[role='textbox']");
+        buttonSendMessage = By.cssSelector("div[data-tooltip][tabindex='1']");
+        runPerformedElement(writeMessage);
+        getElementTotallyLocated(fieldToWhom).sendKeys(whom);
+        getElementTotallyLocated(fieldSubject).sendKeys(subject);
+        getElementTotallyLocated(fieldText).sendKeys(text);
+        runPerformedElement(buttonSendMessage);
     }
 
     public String getTitleMainPage() {
-        getElementTotallyLocated(By.cssSelector(img));
+        img = By.cssSelector("a[href='#inbox'] img");
+        getElementTotallyLocated(img);
         return driver.getTitle();
     }
 
     public boolean isMessageContainsUserEmail(String username) {
-        runPerformedElement(By.cssSelector(listOfMessages));
-        return getElementTotallyLocated(By.cssSelector(emailInMassage)).getText().contains(username);
+        listOfMessages = By.cssSelector("table[id*='2k'] tbody :nth-child(1)");
+        emailInMassage = By.cssSelector("span[role='gridcell'] :nth-child(2)");
+        runPerformedElement(listOfMessages);
+        return getElementTotallyLocated(emailInMassage).getText().contains(username);
     }
 }
